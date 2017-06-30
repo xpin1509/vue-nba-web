@@ -9,7 +9,7 @@
 		name: 'hello',
 		data() {
 			return {
-				msg: 'Hello Vue'
+				msg: 'this Hello Vue-component'
 			}
 		}
 	}
