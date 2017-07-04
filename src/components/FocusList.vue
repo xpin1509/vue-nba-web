@@ -1,17 +1,29 @@
 <template>
   <div class="focus">
-  	<div class="slider-wrap">
+  	<div class="slider-wrap" id="slider-wrap">
   		<ul class="slider">
-  			<li><img src="../../../my-first-cli-project/dist/static/image/a.jpg"/></li>
-  			<li><img src="../../../my-first-cli-project/dist/static/image/b.jpg"/></li>
-  			<li><img src="../../../my-first-cli-project/dist/static/image/d.jpg"/></li>
-  			<li><img src="../../../my-first-cli-project/dist/static/image/e.jpg"/></li>
+  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
+  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
+  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
+  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
   		</ul>
-  		<!--<div class="page">
-  			<i class="on"></i><i></i><i></i><i></i>
-  		</div>-->
+  		<div class="page">
+  			<i>1/5</i>
+  		</div>
   	</div>
   	<div class="game">
+  		<div class="game-list">
+  			<div class="vist-team" style="background-image: ;"></div>
+  			<div class="game-info">
+  				<span>88:99</span>
+  				<span>已结束</span>
+  			</div>
+  			<div class="host-team" style="background-image: ;"></div>
+  		</div>
+  		<div class=""></div>
+  		<div class=""></div>
+  		<div class=""></div>
+  		<div class=""></div>
   		<div class=""></div>
   	</div>
   	<div class="news-list">
@@ -21,10 +33,10 @@
   			</div>
   			<div class="news-box">
   				<div class="news-title">
-  					 {{item.title}} 
+  					 <!--{{item.title}}--> 
   				</div>
   				<div class="news-detail">
-  					{{item.mark}}
+  					<!--{{item.mark}}-->
   				</div>
   			</div>
   		</div>
@@ -38,25 +50,26 @@ export default {
   props:['api'],
   data () {
     return {
-    	newsList:[]
+    	newsList:[],
+    	imgList:[]
     }
   },
   created(){
-  	var self = this
-		this.$http.get(this.api).then(function(res){
-				//api json
-				//foucsImageList 焦点大图
-				//quickList快讯
-				var result = JSON.parse(res.body)  ;
-				//self.newsList = result.index_basic_new.data.quickList
-		})
+  	var self = this;
+		var slider = new Slider();
+//		this.$http.get(this.api).then(function(res){
+//				//api json
+//				//foucsImageList 焦点大图
+//				//quickList快讯
+//				var result = JSON.parse(res.body)  ;
+//				//self.newsList = result.index_basic_new.data.quickList
+//		})
   },
   updated(){
-  	new Slider({
-        el:this.$el,
-        hasDots:true,
-        isAutoPlay:true
-    });
+    	
+  },
+  methods(){
+  	
   }
   
 }
@@ -67,9 +80,8 @@ export default {
 .focus{
   font-size: 0.32rem;
 }
-.slider-wrap{
+.slider-wrap,.slider-wrap .slider{
 	height: 3.86rem;
-	background: #28C0C6;
 	overflow: hidden;
 	position: relative;
 }
@@ -78,34 +90,39 @@ export default {
 	width:100%;
 	height:100%;
 	top: 0;
-	left: 100%;
-}
-.slider>li:first-child{
-	left:0;
+	left: 0;
+	z-index:0;
+	opacity: 0;
 }
 .page {
   position: absolute;
-  left: 0;
-  bottom: 0.8em;
-  width: 100%;
-  text-align: center;
-}
-.page i{
-	display: inline-block;
-  width: 0;
-  height: 0;
-  margin: 0 .2em;
-  border-radius: 100%;
-  border: .3em solid #999;
-  box-shadow: 0 0 1px #CCC;
-}
-.page i.on{
-	border-color: #fff;	
+  bottom: 0.6em;
+  right: 0.6em;
+  display: inline-block;
+  text-align: right;
+  color: #fff;
 }
 .slider>li>img{
 	width: 100%;
 	height: 100%;
 }
+
+.game{
+	margin: 0.2rem 0;
+	display: flex;
+}
+.game-list{
+	border-right: 1px solid #efefef;
+}
+.game-info span{
+	display: block;
+}
+.vist-team{
+	width: 0.88rem;
+	height: 0.88rem;
+}
+
+
 .news-cell{
 	display: flex;
 	display: -webkit-flex;

@@ -1,21 +1,23 @@
 <template>
   <div class="home">
   	<head-bar></head-bar>
+  	<focus-list></focus-list>
   </div>
 </template>
 
 <script>
 import HeadBar from "./HeadBar.vue"
+import FocusList from "./FocusList.vue"
 
 export default {
   name: 'home',
   data () {
     return {
-      msg: 'this is home'
     }
   },
   components:{
-  	HeadBar
+  	HeadBar,
+  	FocusList
   }
 }
 </script>
