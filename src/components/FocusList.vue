@@ -1,24 +1,24 @@
 <template>
   <div class="focus">
   	<div class="slider-wrap" id="slider-wrap">
-  		<ul class="slider">
-  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
-  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
-  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
-  			<li><img src="//cdn.read.html5.qq.com/image?src=3gqq&subsrc=nba&q=6&r=4&imgflag=32&w=300&h=200&imageUrl=http://zxpic.gtimg.com/infonew/0/sports_pics_-3485155.jpg/800%3Fwebp%3D1"/></li>
+  		<ul class="slider" id="slider-container">
+  			<li><img src="http://test.ortholink.cn/include/mt/images/index/@2x_11.jpg?t=1.0.1.jpg"/></li>
+  			<li><img src="http://test.ortholink.cn/include/mt/images/index/@2x_13.jpg?t=1.0.1.jpg"/></li>
+  			<li><img src="http://test.ortholink.cn/include/mt/images/index/@2x_14.jpg?t=1.0.1.jpg1"/></li>
+  			<li><img src="http://test.ortholink.cn/include/mt/images/index/@2x_12.jpg?t=1.0.1.jpg"/></li>
   		</ul>
-  		<div class="page">
+  		<div class="page" id="page">
   			<i>1/5</i>
   		</div>
   	</div>
   	<div class="game">
   		<div class="game-list">
-  			<div class="vist-team" style="background-image: ;"></div>
+  			<div class="vist-team" style="background-image: url(http://zxpic.gtimg.com/infonew/0/upload_pics_-24864.jpg/0);"></div>
   			<div class="game-info">
   				<span>88:99</span>
-  				<span>已结束</span>
+  				<span class="time-out">已结束</span>
   			</div>
-  			<div class="host-team" style="background-image: ;"></div>
+  			<div class="host-team" style="background-image: url(http://zxpic.gtimg.com/infonew/0/upload_pics_-24870.jpg/0);"></div>
   		</div>
   		<div class=""></div>
   		<div class=""></div>
@@ -56,7 +56,8 @@ export default {
   },
   created(){
   	var self = this;
-		var slider = new Slider();
+  	
+//		var slider = new Slider();
 //		this.$http.get(this.api).then(function(res){
 //				//api json
 //				//foucsImageList 焦点大图
@@ -65,8 +66,10 @@ export default {
 //				//self.newsList = result.index_basic_new.data.quickList
 //		})
   },
-  updated(){
-    	
+  mounted(){ 
+  	new Slider({
+  		el:'slider-wrap'
+  	});
   },
   methods(){
   	
@@ -93,6 +96,7 @@ export default {
 	left: 0;
 	z-index:0;
 	opacity: 0;
+	transition: 0.5s all ease;  
 }
 .page {
   position: absolute;
@@ -101,6 +105,7 @@ export default {
   display: inline-block;
   text-align: right;
   color: #fff;
+  z-index: 2;
 }
 .slider>li>img{
 	width: 100%;
@@ -113,15 +118,25 @@ export default {
 }
 .game-list{
 	border-right: 1px solid #efefef;
+	display: flex;
 }
 .game-info span{
 	display: block;
+	line-height: 0.44rem;
+	color: #222;
+	margin: 0 0.1rem;
 }
-.vist-team{
+.time-out{
+	font-size:0.24rem ;
+	color: #888;
+}
+.vist-team,.host-team{
 	width: 0.88rem;
 	height: 0.88rem;
+	background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-
 
 .news-cell{
 	display: flex;
