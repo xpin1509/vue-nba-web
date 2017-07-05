@@ -2,23 +2,15 @@
   <div class="head">
   	<h1><!--手机移动端--></h1>
   	<ul class="nav">
-  		<li> 焦点</li>
-  		<li> 赛程</li>
-  		<li> 视频</li>
-  		<li> 圈子</li>
-  		
-  		<li> 季后赛</li>
-  		<li> 排名</li>
-  		<li> 统计</li>
-  		<li> 骑士</li>
-  		<li> 勇士</li>
-  		<!--<li> 季后赛</li>
-  		<li> 统计</li>
-  		<li> 排名</li>
-  		<li> 骑士</li>
-  		<li> 勇士</li>
-  		<li> 马刺</li>
-  		<li> 凯尔特人</li> -->
+  		<li><router-link to="/">焦点</router-link></li>
+  		<li><router-link to="/match">赛程</router-link></li>
+  		<li><router-link to="/video">视频</router-link></li>
+  		<li><router-link to="/community">圈子</router-link></li>
+  		<li><router-link to="/playoff">季后赛</router-link></li>
+  		<li><router-link to="/range">排名</router-link></li>
+  		<li><router-link to="/stats">统计</router-link></li>
+  		<li><router-link to="/">骑士</router-link></li>
+  		<li><router-link to="/">勇士</router-link></li>
   	</ul>
   </div>
 </template>
@@ -56,5 +48,8 @@ export default {
 	}
 	.nav li{
 		padding:0 0.2rem ;
+	}
+	.nav li a{
+		color: #fff;
 	}
 </style>

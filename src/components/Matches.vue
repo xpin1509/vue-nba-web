@@ -1,5 +1,6 @@
 <template>
   <div class="match">
+  	比赛
   </div>
 </template>
 

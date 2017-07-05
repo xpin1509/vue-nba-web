@@ -11,7 +11,7 @@
 			<div class="page" id="page"><i></i></div>
 		</div>
 		<div class="game">
-			<div class="game-list" v-for="gameItem in gameList" @click="liveGame(liveId,scheduleId,guessId)">
+			<div class="game-list" v-for="gameItem in gameList" @click="liveGame(gameItem.liveId,gameItem.scheduleId,gameItem.guessId)">
 				<div class="vist-team" :style="{backgroundImage: 'url(' + gameItem.visitTeamLogo + ')'}"></div>
 				<div class="game-info">
 					<span>{{gameItem.visitScore}}:{{gameItem.homeScore}}</span>
@@ -67,6 +67,9 @@
 		methods: {
 			openUrl: function(cid, tid) {
 				location.href = 'https://quan.qq.com/post?circleid=' + cid + '&postid=' + tid;
+			},
+			liveGame: function(liveId, scheduleId, guessId) {
+				console.log(liveId + ',' + scheduleId + ',' + guessId)
 			}
 		}
 	}
