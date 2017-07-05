@@ -3,13 +3,15 @@
   	<h1><!--手机移动端--></h1>
   	<ul class="nav">
   		<li> 焦点</li>
-  		<li> 焦点</li>
-  		<li> 焦点</li>
-  		<li> 焦点</li>
-  		<li> 焦点</li>
-  		<li> 焦点</li>
-  		<li> 焦点</li>
-  		<li> 焦点</li>
+  		<li> 赛程</li>
+  		<li> 视频</li>
+  		<li> 圈子</li>
+  		
+  		<li> 季后赛</li>
+  		<li> 排名</li>
+  		<li> 统计</li>
+  		<li> 骑士</li>
+  		<li> 勇士</li>
   		<!--<li> 季后赛</li>
   		<li> 统计</li>
   		<li> 排名</li>
