@@ -4,13 +4,13 @@
 		<div class="head">
 		  	<h1><!--手机移动端--></h1>
 		  	<ul class="nav">
-		  		<li><router-link to="/">焦点</router-link></li>
-		  		<li><router-link to="/match">赛程</router-link></li>
-		  		<li><router-link to="/video">视频</router-link></li>
-		  		<li><router-link to="/community">圈子</router-link></li>
-		  		<li><router-link to="/playoff">季后赛</router-link></li>
+		  		<li><router-link to="/home">焦点</router-link></li>
+		  		<!--<li><router-link to="/match">赛程</router-link></li>-->
 		  		<li><router-link to="/range">排名</router-link></li>
 		  		<li><router-link to="/stats">统计</router-link></li>
+		  		<li><router-link to="/playoff">季后赛</router-link></li>
+		  		<li><router-link to="/video">视频</router-link></li>
+		  		<li><router-link to="/community">圈子</router-link></li>
 		  		<li><router-link to="/cavalier">骑士</router-link></li>
 		  		<li><router-link to="/warrior">勇士</router-link></li>
 		  	</ul>
@@ -69,5 +69,8 @@
 	}
 	.nav li a{
 		color: #fff;
+	}
+	.nav li .router-link-active{
+		font-weight: 700;
 	}
 </style>

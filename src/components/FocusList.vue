@@ -142,11 +142,16 @@
 		padding: 0 0.2rem;
 	}
 	
+	.game-info {
+		width: 1.08rem;
+		margin: 0 0.1rem;
+		text-align: center;
+	}
+	
 	.game-info span {
 		display: block;
 		line-height: 0.44rem;
 		color: #222;
-		margin: 0 0.1rem;
 	}
 	
 	.time-out {

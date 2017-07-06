@@ -7,10 +7,10 @@
 				<div class="teams">
 					<div class="teams_left">
 						<div class="team_playoff_team_each">
-							<div class="teamnum">W{{finalsWest.wincount1}}</div>
+							<div class="teamnum">W{{finalsWest.conferenceseed1}}</div>
 							<div class="teamlogo" :style="{backgroundImage: 'url(' + finalsWest.logo1 + ')'}"></div>
 							<div class="teamname">{{finalsWest.shortname1}}</div>
-							<div class="teamscore">{{finalsWest.conferenceseed1}}</div>
+							<div class="teamscore">{{finalsWest.wincount1}}</div>
 						</div>
 					</div>
 					<div class="teams_right">
@@ -250,6 +250,9 @@
 	.teamname {
 		width: 1.2rem;
 		text-align: center;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		overflow: hidden;
 	}
 	
 	.teams_left .teamscore {
