@@ -33,33 +33,33 @@
 	//api=>https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=team_rank&rt=w%2Ce%2Cd
 	export default {
 		name: 'range',
-		data() {
-			return {
-				eastTeam: [],
-				westTeam: [],
-				teamList: [],
-				choose: 0
+data() {
+		return {
+			eastTeam: [],
+			westTeam: [],
+			teamList: [],
+			choose: 0
+		}
+	},
+	created() {
+		var self = this;
+		this.$http.get('https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=team_rank&rt=w%2Ce%2Cd').then(function(res) {
+			var result = JSON.parse(res.body);
+			var west = result.team_rank.w;
+			var east = result.team_rank.e;
+			var team = result.team_rank.team;
+			for(var i = 0; i < west.length; i++) {
+				self.westTeam.push(team[west[i]])
 			}
-		},
-		created() {
-			var self = this;
-			this.$http.get('https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=team_rank&rt=w%2Ce%2Cd').then(function(res) {
-				var result = JSON.parse(res.body);
-				var west = result.team_rank.w;
-				var east = result.team_rank.e;
-				var team = result.team_rank.team;
-				for(var i = 0; i < west.length; i++) {
-					self.westTeam.push(team[west[i]])
-				}
-				for(var j = 0; j < west.length; j++) {
-					self.eastTeam.push(team[east[j]])
-				}
-				self.teamList = self.westTeam
-			})
-		},
-		methods: {
-			chooseTeam: function(team) {
-				if(team == 'e') {
+			for(var j = 0; j < west.length; j++) {
+				self.eastTeam.push(team[east[j]])
+			}
+			self.teamList = self.westTeam
+		})
+	},
+	methods: {
+		chooseTeam: function(team) {
+				if(team =='e') {
 					this.choose = 1;
 					this.teamList = this.eastTeam
 				} else if(team == 'w') {

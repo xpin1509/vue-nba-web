@@ -3,19 +3,10 @@
 		<h1><!--手机移动端--></h1>
 		<ul class="nav">
 			<li>
-				<router-link to="/">焦点</router-link>
+				<router-link to="/home">焦点</router-link>
 			</li>
 			<li>
 				<router-link to="/match">赛程</router-link>
-			</li>
-			<li>
-				<router-link to="/video">视频</router-link>
-			</li>
-			<li>
-				<router-link to="/community">圈子</router-link>
-			</li>
-			<li>
-				<router-link to="/playoff">季后赛</router-link>
 			</li>
 			<li>
 				<router-link to="/range">排名</router-link>
@@ -24,10 +15,19 @@
 				<router-link to="/stats">统计</router-link>
 			</li>
 			<li>
-				<router-link to="/">骑士</router-link>
+				<router-link to="/playoff">季后赛</router-link>
 			</li>
 			<li>
-				<router-link to="/">勇士</router-link>
+				<router-link to="/video">视频</router-link>
+			</li>
+			<li>
+				<router-link to="/community">圈子</router-link>
+			</li>
+			<li>
+				<router-link to="/cavalier">骑士</router-link>
+			</li>
+			<li>
+				<router-link to="/warrior">勇士</router-link>
 			</li>
 		</ul>
 	</div>
@@ -74,7 +74,7 @@
 	}
 	
 	.nav li a {
-		color: #000;
+		color: #fff;
 	}
 	
 	.nav li .router-link-active {

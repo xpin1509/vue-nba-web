@@ -2,30 +2,31 @@
 	<div class="match">
 		<div class="title">
 			<span><</span>
-			<span>2017-07-06</span>
+			<span>{{result.cur_date}}</span>
 			<span>></span>
 		</div>
 		<div class="list-match">
-			<div class="lincoapp-nba-match">
+			<div class="lincoapp-nba-match" v-for="item in result.list">
 				<div class="t_live_item">
 					<div class="team">
-						<img src="http://zxpic.gtimg.com/infonew/0/upload_pics_-24857.jpg/0" />
+						<img :src="item.visitteamlogo" />
 						<div class="team-info">
 							<div class="team-info">
-								<strong class="team-score">96</strong>
-								<span class="team-name">尼克斯</span>
+								<strong class="team-score">{{item.visitscore}}</strong>
+								<span class="team-name">{{item.visitteamname}}</span>
 							</div>
 						</div>
 					</div>
 					<div class="time">
-						<span class="count">已结束</span>
+						<span class="count">{{item.match_status}}</span>
+						<span class="count">{{item.match_time}}</span>
 					</div>
 					<div class="team">
 						<div class="team-info">
-							<strong class="team-score">96</strong>
-							<span class="team-name">尼克斯</span>
+							<strong class="team-score">{{item.homescore}}</strong>
+							<span class="team-name">{{item.hometeamname}}</span>
 						</div>
-						<img src="http://zxpic.gtimg.com/infonew/0/upload_pics_-24857.jpg/0" />
+						<img :src="item.hometeamlogo" />
 					</div>
 				</div>
 			</div>
@@ -38,16 +39,16 @@
 		name: 'match',
 		data() {
 			return {
-				teamList: []
+				result: {}
 			}
 		},
 		created() {
 			var self = this;
 			this.$http.get('https://nb.3g.qq.com/nba/api/schedule@getList').then(function(res) {
-				//var result = JSON.parse(res.body);
-				//self.teamList = result
+				var str = JSON.stringify(res.body).replace(/@/, '');
+				var res = JSON.parse(str);
+				self.result = res.schedulegetList.data;
 			})
-			
 		}
 	}
 </script>
@@ -80,6 +81,7 @@
 	}
 	
 	.team {
+		flex: 1;
 		width: 30%;
 		display: flex;
 		text-align: center;
@@ -91,10 +93,21 @@
 		display: block;
 	}
 	
+	.team-info {
+		flex: 1;
+	}
+	
 	.team-info strong {
 		display: block;
 		font-size: 0.56rem;
 		font-weight: normal;
 		line-height: 1;
+	}
+	
+	.time {
+		margin-top: 0.2rem;
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		-webkit-box-pack: center;
 	}
 </style>
