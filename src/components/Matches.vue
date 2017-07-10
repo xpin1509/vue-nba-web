@@ -7,28 +7,30 @@
 		</div>
 		<div class="list-match">
 			<div class="lincoapp-nba-match" v-for="item in result.list">
-				<div class="t_live_item">
-					<div class="team">
-						<img :src="item.visitteamlogo" />
-						<div class="team-info">
+				<router-link :to="{path:'live',query: {liveId:item.liveid,scheduleId:item.schid}}">
+					<div class="t_live_item">
+						<div class="team">
+							<img :src="item.visitteamlogo" />
 							<div class="team-info">
-								<strong class="team-score">{{item.visitscore}}</strong>
-								<span class="team-name">{{item.visitteamname}}</span>
+								<div class="team-info">
+									<strong class="team-score">{{item.visitscore}}</strong>
+									<span class="team-name">{{item.visitteamname}}</span>
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="time">
-						<span class="count">{{item.match_status}}</span>
-						<span class="count">{{item.match_time}}</span>
-					</div>
-					<div class="team">
-						<div class="team-info">
-							<strong class="team-score">{{item.homescore}}</strong>
-							<span class="team-name">{{item.hometeamname}}</span>
+						<div class="time">
+							<span class="count">{{item.match_status}}</span>
+							<span class="count">{{item.match_time}}</span>
 						</div>
-						<img :src="item.hometeamlogo" />
+						<div class="team">
+							<div class="team-info">
+								<strong class="team-score">{{item.homescore}}</strong>
+								<span class="team-name">{{item.hometeamname}}</span>
+							</div>
+							<img :src="item.hometeamlogo" />
+						</div>
 					</div>
-				</div>
+				</router-link>
 			</div>
 		</div>
 	</div>
@@ -48,7 +50,7 @@
 				var str = JSON.stringify(res.body).replace(/@/, '');
 				var res = JSON.parse(str);
 				self.result = res.schedulegetList.data;
-			})
+			});
 		}
 	}
 </script>
@@ -78,6 +80,7 @@
 		line-height: 0.32rem;
 		display: flex;
 		justify-content: space-between;
+		color: #222;
 	}
 	
 	.team {

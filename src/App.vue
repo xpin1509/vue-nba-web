@@ -1,12 +1,25 @@
 <template>
 	<div id="app">
+		<head-bar v-if="isShowHead == true"></head-bar>
 		<router-view></router-view>
 	</div>
 </template>
 
 <script>
+	import HeadBar from "./components/HeadBar.vue"
+	import { mapState, mapActions } from 'vuex'
 	export default {
-		name: 'app'
+		name: 'app',
+		data() {
+			return {
+			}
+		},
+		computed: mapState({
+	  		isShowHead: state => state.isShowHead
+		}),
+		components: {
+			HeadBar
+		}
 	}
 </script>
 

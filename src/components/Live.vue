@@ -2,8 +2,8 @@
 	<div class="live">
 		<div class="lincoapp-gameinfo">
 			<div class="nav-bar">
-				<span class="arrow"></span>
-				<span class="home"></span>
+				<span class="arrow" @click="back()"></span>
+				<a href="/" class="home"></a>
 			</div>
 			<div class="lincoapp-nba-match">
 				<div class="t_live_item">
@@ -31,27 +31,119 @@
 
 		</div>
 		<ul class="nav-list">
-			<li :class="{'selected' : index == 0 }">实时</li>
-			<li :class="{'selected' : index == 1 }">视频</li>
-			<li :class="{'selected' : index == 2 }">战报</li>
-			<li :class="{'selected' : index == 3 }">圈子</li>
-			<li :class="{'selected' : index == 4 }">统计</li>
+			<li :class="{'selected' : index == 0 }" @click="chooseNav(0)">实时</li>
+			<li :class="{'selected' : index == 1 }" @click="chooseNav(1)">视频</li>
+			<li :class="{'selected' : index == 2 }" @click="chooseNav(2)">战报</li>
+			<li :class="{'selected' : index == 3 }" @click="chooseNav(3)">圈子</li>
+			<li :class="{'selected' : index == 4 }" @click="chooseNav(4)">统计</li>
 		</ul>
-		<div class="live_content">
-			<div class="title">圈友讨论</div>
-			<ul class="list">
-				<li class="t_n_link" v-for="item in quanlist">
-					<a class="u-img">
-						<img :src="item.stPostUser.sFaceIcon" />
-					</a>
-					<div class="detail">
-						<span class="username">{{item.stPostUser.sNickname}}</span>
-						<div class="u-title">
-							{{item.text}}
+		<div class="page ">
+			<div class="lincoapp-live2" v-if="index == 0">
+
+			</div>
+			<div class="lincoapp-list-images" v-if="index == 1">
+
+			</div>
+			<div class="live_content" v-if="index == 2">
+				<div class="title">圈友讨论</div>
+				<ul class="list">
+					<li class="t_n_link" v-for="item in quanlist">
+						<a class="u-img">
+							<img :src="item.stPostUser.sFaceIcon" />
+						</a>
+						<div class="detail">
+							<span class="username">{{item.stPostUser.sNickname}}</span>
+							<div class="u-title">
+								{{item.text}}
+							</div>
 						</div>
-					</div>
-				</li>
-			</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="lincoapp-list-circle" v-if="index == 3">
+
+			</div>
+			<div class="lincoapp-table1" v-if="index == 4">
+				<div class="title">实时赛况</div>
+				<table border="0" cellspacing="0" cellpadding="0" class="lincoapp-nba-table1">
+					<thead>
+						<tr>
+							<td>球队</td>
+							<td>1节</td>
+							<td>2节</td>
+							<td>3节</td>
+							<td>4节</td>
+							<td>总分</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td :style="{backgroundImage: 'url(' + broadcast_info.t2_icon + ')'}"></td>
+							<td v-for="item in broadcast_info.sec_scores">{{item.score1}}</td>
+							<td>{{broadcast_info.t1_point}}</td>
+						</tr>
+						<tr>
+							<td :style="{backgroundImage: 'url(' + broadcast_info.t1_icon + ')'}"></td>
+							<td v-for="item in broadcast_info.sec_scores">{{item.score2}}</td>
+							<td>{{broadcast_info.t2_point}}</td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="0" cellspacing="0" cellpadding="0" class="lincoapp-nba-table2">
+					<thead>
+						<tr>
+							<td class="teamblue"></td>
+							<td>最佳球员</td>
+							<td class="teamred">
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td class="name t_stats_player"></td>
+							<td>
+								<div class="score"></div>
+							</td>
+							<td class="name t_stats_player"></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="lincoapp-table1">
+					<div class="title">球队数据</div>
+					<table class="lincoapp-nba-table1">
+						<thead>
+							<tr>
+								<td>球队</td>
+								<td>蓝板</td>
+								<td>助攻</td>
+								<td>抢断</td>
+								<td>盖帽</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td :style="{backgroundImage: 'url(' + broadcast_info.t1_icon + ')'}"></td>
+								<td>{{live_stat_4_nba.teamStat.rebounds.visit}}</td>
+								<td>{{live_stat_4_nba.teamStat.blocks.visit}}</td>
+								<td>{{live_stat_4_nba.teamStat.assist.visit}}</td>
+								<td>{{live_stat_4_nba.teamStat.steals.visit}}</td>
+							</tr>
+							<tr>
+								<td :style="{backgroundImage: 'url(' + broadcast_info.t2_icon + ')'}"></td>
+								<td>{{live_stat_4_nba.teamStat.rebounds.home}}</td>
+								<td>{{live_stat_4_nba.teamStat.blocks.home}}</td>
+								<td>{{live_stat_4_nba.teamStat.assist.home}}</td>
+								<td>{{live_stat_4_nba.teamStat.steals.home}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="lincoapp-nba-table3">
+					<div class="title">球员数据</div>
+					<div class="stats"></div>
+					<div class="stats"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -62,33 +154,63 @@
 		data() {
 			return {
 				result: {},
-				index: 2,
-				quanlist: []
+				index: 0,
+				quanlist: [],
+				live_stat_4_nba: {},
+				broadcast_info: {}
 			}
 		},
 		created() {
 			var self = this;
-			//https://nb.3g.qq.com/nba/api/live@getReport,community@getComment?gc_tid=4179011259_3529551497633011023&gr_liveid=2009448
-			this.$http.get('https://nb.3g.qq.com/nba/api/live@getInfo?i_schid=1470134&i_liveid=2009506').then(function(res) {
+			this.liveId = this.$route.query.liveId;
+			this.scheduleId = this.$route.query.scheduleId;
+			//var guessId = this.$route.query.guessId;
+			var scoreApi = 'https://nb.3g.qq.com/nba/api/live@getInfo?';
+			//var detailApi = 'https://nb.3g.qq.com/nba/api/live@getReport,community@getComment?gc_tid=4179011259_3529551497633011023&gr_liveid=2009448'
+			this.$http.get(scoreApi + 'i_schid=' + this.scheduleId + '&i_liveid=' + this.liveId).then(function(res) {
 				var str = JSON.stringify(res.body).replace(/@/g, '');
 				var res = JSON.parse(str);
 				self.result = res.livegetInfo.data;
 			})
-			this.$http.get('https://nb.3g.qq.com/nba/api/live@getReport,community@getComment?gc_tid=4179011259_3529551497633011023&gr_liveid=2009448').then(function(res) {
-				var str = JSON.stringify(res.body).replace(/@/g, '');
-				var res = JSON.parse(str);
-				console.log(res)
-				self.quanlist = res.communitygetComment.data.list;
-			})
+			//			this.$http.get(detailApi).then(function(res) {
+			//				var str = JSON.stringify(res.body).replace(/@/g, '');
+			//				var res = JSON.parse(str);
+			//				self.quanlist = res.communitygetComment.data.list;
+			//			})
+			this.$store.dispatch('hideHead');
 		},
 		methods: {
-
+			back: function() {
+				this.$store.dispatch('showHead');
+				history.go(-1);
+			},
+			chooseNav: function(index) {
+				this.index = index;
+				if(this.index === 4) {
+					this.getLiveStat4()
+				}
+			},
+			getLiveStat4: function() {
+				var api = "https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=live_stat_4_nba%2Cbroadcast_info&sch_id=" + this.scheduleId + "&bid=" + this.liveId;
+				this.$http.get(api).then(function(res) {
+					//					var str = JSON.stringify(res.body).replace(/@/g, '');
+					//					var res = JSON.parse(str);
+					//					this.quanlist = res.communitygetComment.data.list;
+					var res = JSON.parse(res.body);
+					this.broadcast_info = res.broadcast_info;
+					this.live_stat_4_nba = res.live_stat_4_nba;
+				})
+			}
 		}
 	}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+	.live {
+		color: #222;
+	}
+	
 	.lincoapp-gameinfo {
 		height: 3.36rem;
 		background: url(../assets/bg.png) center /100% no-repeat;
@@ -102,7 +224,8 @@
 		display: flex;
 	}
 	
-	.nav-bar span {
+	.nav-bar span,
+	.nav-bar>a {
 		width: 0.48rem;
 		height: 0.48rem;
 		background-size: 100%;
@@ -191,6 +314,7 @@
 		color: #666;
 		display: flex;
 		justify-content: space-between;
+		border-bottom: 1px solid #F5F5F5;
 	}
 	
 	.live_content {
@@ -238,5 +362,87 @@
 	
 	.u-title {
 		font-size: 0.3rem;
+	}
+	
+	.lincoapp-table1 .title {
+		line-height: .8rem;
+		font-size: .3rem;
+		padding: 0 .32rem;
+		background: #fff;
+	}
+	
+	.lincoapp-nba-table1 {
+		width: 100%;
+		background: #fff;
+	}
+	
+	.lincoapp-nba-table1 td {
+		text-align: center;
+		overflow: hidden;
+	}
+	
+	.lincoapp-nba-table1 thead td {
+		color: #787878;
+		height: .48rem;
+		line-height: .48rem;
+		font-size: .24rem;
+		width: 14%;
+	}
+	
+	.lincoapp-nba-table1 tbody tr td:first-child {
+		background-size: auto 80%;
+		background-position: center;
+		background-repeat: no-repeat;
+	}
+	
+	.lincoapp-nba-table1 tbody td {
+		height: .7rem;
+		line-height: .7rem;
+		font-size: .3rem;
+	}
+	
+	.lincoapp-nba-table1 tbody tr {
+		background: #F4F4F7;
+	}
+	
+	.lincoapp-nba-table1 tbody tr:nth-child(odd) {
+		background: #fff;
+	}
+	
+	.lincoapp-nba-table1 tbody {
+		border-bottom: 1px solid #e8e8e8;
+	}
+	
+	.lincoapp-nba-table2 {
+		width: 100%;
+		margin-top: .11rem;
+		background: #fff;
+	}
+	
+	.lincoapp-nba-table2 td {
+		height: .9rem;
+		overflow: hidden;
+	}
+	
+	.lincoapp-nba-table2 thead {
+		color: #000;
+		font-weight: 700;
+		text-align: center;
+		font-size: .32rem;
+		border-top: 1px solid #DCDDE1;
+		border-bottom: 1px solid #DCDDE1;
+	}
+	
+	.lincoapp-nba-table1 thead td {
+		color: #787878;
+		height: .48rem;
+		line-height: .48rem;
+		font-size: .24rem;
+		width: 14%;
+	}
+	.lincoapp-nba-table1 tbody td {
+	    height: .7rem;
+	    line-height: .7rem;
+	    font-size: .3rem;
 	}
 </style>

@@ -12,12 +12,14 @@
 		</div>
 		<div class="game">
 			<div class="game-list" v-for="gameItem in gameList" @click="liveGame(gameItem.liveId,gameItem.scheduleId,gameItem.guessId)">
-				<div class="vist-team" :style="{backgroundImage: 'url(' + gameItem.visitTeamLogo + ')'}"></div>
-				<div class="game-info">
-					<span>{{gameItem.visitScore}}:{{gameItem.homeScore}}</span>
-					<span class="time-out">{{gameItem.statusName}}</span>
-				</div>
-				<div class="host-team" :style="{backgroundImage: 'url(' + gameItem.homeTeamLogo + ')'}"></div>
+				<router-link :to="{path:'live',query: {liveId:gameItem.liveId,scheduleId:gameItem.scheduleId,guessId:gameItem.guessId}}">
+					<div class="vist-team" :style="{backgroundImage: 'url(' + gameItem.visitTeamLogo + ')'}"></div>
+					<div class="game-info">
+						<span>{{gameItem.visitScore}}:{{gameItem.homeScore}}</span>
+						<span class="time-out">{{gameItem.statusName}}</span>
+					</div>
+					<div class="host-team" :style="{backgroundImage: 'url(' + gameItem.homeTeamLogo + ')'}"></div>
+				</router-link>
 			</div>
 		</div>
 		<div class="news-list">
@@ -136,12 +138,11 @@
 		display: none;
 	}
 	
-	.game-list {
+	.game-list a{
 		border-right: 1px solid #efefef;
 		display: flex;
 		padding: 0 0.2rem;
 	}
-	
 	.game-info {
 		width: 1.08rem;
 		margin: 0 0.1rem;

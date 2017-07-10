@@ -24,10 +24,16 @@
 				<router-link to="/community">圈子</router-link>
 			</li>
 			<li>
-				<router-link to="/cavalier">骑士</router-link>
+				<router-link to="/team">骑士</router-link>
 			</li>
 			<li>
-				<router-link to="/warrior">勇士</router-link>
+				<router-link to="/team">勇士</router-link>
+			</li>
+			<li>
+				<router-link to="/team">马刺</router-link>
+			</li>
+			<li>
+				<router-link to="/team">热火</router-link>
 			</li>
 		</ul>
 	</div>
@@ -45,7 +51,7 @@
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 	.head {
-		line-height: 0.88rem;
+		line-height: 0.72rem;
 		font-size: 0.36rem;
 		background: #026bb6;
 		color: #FFFFFF;
@@ -56,7 +62,6 @@
 	}
 	
 	.nav {
-		height: 0.88rem;
 		padding: 0 0.12rem;
 		display: -webkit-box;
 		-webkit-overflow-scrolling: touch;
