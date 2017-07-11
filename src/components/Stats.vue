@@ -54,7 +54,8 @@
 			</tr>
 
 			<tr v-for="item in playerlist">
-				<td class="first"><i>{{item.rank}}</i> <em :style="{backgroundImage: 'url(' + item.teamlogo + ')'}"></em>{{item.playername}}</td>
+				<!---->
+				<td class="first"><i :class="{'firsts': item.rank == 1, 'second': item.rank == 2, 'third': item.rank == 3}">{{item.rank}}</i> <em :style="{backgroundImage: 'url(' + item.teamlogo + ')'}"></em>{{item.playername}}</td>
 				<td v-if="chooses == 'sht' || chooses == 'ftp' || chooses == 'tp'">{{item.percentage}}</td>
 				<td>{{chooses == 'sht' || chooses == 'ftp' || chooses == 'tp' ? item.numerator : item.avgdata}}</td>
 				<td>{{chooses == 'sht' || chooses == 'ftp' || chooses == 'tp' ? item.denominator : item.totaldata}}</td>
@@ -174,5 +175,17 @@
 		background-position: center;
 		background-size: cover;
 		background-repeat: no-repeat;
+	}
+	
+	.stats .firsts{
+		background: #ED1439 !important;
+	}
+	
+	.stats .second  {
+		background: #FA9729;
+	}
+	
+	.stats .third  {
+		background: #F3BF2E;
 	}
 </style>

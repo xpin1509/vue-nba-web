@@ -18,7 +18,7 @@
 					<th width="18% ">场均差</th>
 				</tr>
 				<tr v-for="item in teamList ">
-					<td class="first "> <i>{{item.conferenceseed}}</i>{{item.cnshortname}}</td>
+					<td class="first "> <i :class="{'golden':item.conferenceseed < 9}">{{item.conferenceseed}}</i>{{item.cnshortname}}</td>
 					<td>{{item.wins}}</td>
 					<td>{{item.losses}}</td>
 					<td>{{item.winper}}</td>
@@ -33,33 +33,33 @@
 	//api=>https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=team_rank&rt=w%2Ce%2Cd
 	export default {
 		name: 'range',
-data() {
-		return {
-			eastTeam: [],
-			westTeam: [],
-			teamList: [],
-			choose: 0
-		}
-	},
-	created() {
-		var self = this;
-		this.$http.get('https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=team_rank&rt=w%2Ce%2Cd').then(function(res) {
-			var result = JSON.parse(res.body);
-			var west = result.team_rank.w;
-			var east = result.team_rank.e;
-			var team = result.team_rank.team;
-			for(var i = 0; i < west.length; i++) {
-				self.westTeam.push(team[west[i]])
+		data() {
+			return {
+				eastTeam: [],
+				westTeam: [],
+				teamList: [],
+				choose: 0
 			}
-			for(var j = 0; j < west.length; j++) {
-				self.eastTeam.push(team[east[j]])
-			}
-			self.teamList = self.westTeam
-		})
-	},
-	methods: {
-		chooseTeam: function(team) {
-				if(team =='e') {
+		},
+		created() {
+			var self = this;
+			this.$http.get('https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=team_rank&rt=w%2Ce%2Cd').then(function(res) {
+				var result = JSON.parse(res.body);
+				var west = result.team_rank.w;
+				var east = result.team_rank.e;
+				var team = result.team_rank.team;
+				for(var i = 0; i < west.length; i++) {
+					self.westTeam.push(team[west[i]])
+				}
+				for(var j = 0; j < west.length; j++) {
+					self.eastTeam.push(team[east[j]])
+				}
+				self.teamList = self.westTeam
+			})
+		},
+		methods: {
+			chooseTeam: function(team) {
+				if(team == 'e') {
 					this.choose = 1;
 					this.teamList = this.eastTeam
 				} else if(team == 'w') {
@@ -94,7 +94,7 @@ data() {
 		background: #FFFFFF;
 		padding: 0 .2rem;
 		/*-webkit-box-pack: justify;*/
-		justify-content:space-between;
+		justify-content: space-between;
 		display: flex;
 	}
 	
@@ -139,9 +139,12 @@ data() {
 		line-height: .36rem;
 		text-align: center;
 		color: #fff;
-		background: #F3BF2E;
+		background: #B3B3B5;
 		font-style: normal;
 		vertical-align: middle;
 		margin-right: 0.1rem;
+	}
+	.first .golden{
+		background: #F3BF2E;
 	}
 </style>
