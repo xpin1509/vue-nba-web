@@ -348,8 +348,8 @@
 				})
 			},
 			getLiveStat1: function() {
-				var api = "https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=match_video2%2Cget_ads&bid=2009472"
-				this.$http.get(api).then(function(res) {
+				var api = "https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=match_video2%2Cget_ads&bid="
+				this.$http.get(api + this.liveId).then(function(res) {
 					var res = JSON.parse(res.body);
 					this.videoList = res.match_video2.totalArr;
 				})
@@ -374,7 +374,6 @@
 					this.visitplayer = this.live_stat_4_nba.playStat.visit;
 					this.homeplayer = this.live_stat_4_nba.playStat.home;
 				})
-				console.log('zhixing')
 			}
 
 		}
