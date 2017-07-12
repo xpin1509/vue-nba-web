@@ -124,9 +124,11 @@ export default {
 	}
 	
 	.game {
+		display: -webkit-box;
+	    display: -moz-box;
+	    display: box;
 		margin: 0.2rem 0;
 		padding: 0.1rem;
-		display: flex;
 		-webkit-overflow-scrolling: touch;
 		overflow-scrolling: touch;
 		overflow-x: auto;
@@ -141,6 +143,7 @@ export default {
 	.game-list a {
 		border-right: 1px solid #efefef;
 		display: flex;
+		display: -webkit-flex;
 		padding: 0 0.2rem;
 	}
 	
