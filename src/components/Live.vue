@@ -122,32 +122,104 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td :style="{backgroundImage: 'url(' + broadcast_info.t2_icon + ')'}"></td>
-							<td v-for="item in broadcast_info.sec_scores">{{item.score1}}</td>
+							<td :style="{backgroundImage: 'url(' + broadcast_info.t1_icon + ')'}"></td>
+							<td v-for="item in sec_scores">{{item.score1}}</td>
 							<td>{{broadcast_info.t1_point}}</td>
 						</tr>
 						<tr>
-							<td :style="{backgroundImage: 'url(' + broadcast_info.t1_icon + ')'}"></td>
-							<td v-for="item in broadcast_info.sec_scores">{{item.score2}}</td>
+							<td :style="{backgroundImage: 'url(' + broadcast_info.t2_icon + ')'}"></td>
+							<td v-for="item in sec_scores">{{item.score2}}</td>
 							<td>{{broadcast_info.t2_point}}</td>
 						</tr>
 					</tbody>
 				</table>
-				<table border="0" cellspacing="0" cellpadding="0" class="lincoapp-nba-table2" v-if="0">
+				<table border="0" cellspacing="0" cellpadding="0" class="lincoapp-nba-table2" v-if="showTopPlayer">
 					<thead>
 						<tr>
-							<td class="teamblue"></td>
+							<td class="teamblue">
+								<div :style="{backgroundImage: 'url(' + broadcast_info.t1_icon + ')'}" class="team-logo"></div>
+							</td>
 							<td>最佳球员</td>
-							<td class="teamred"></td>
+							<td class="teamred">
+								<div :style="{backgroundImage: 'url(' + broadcast_info.t2_icon + ')'}" class="team-logo"></div>
+							</td>
 						</tr>
 					</thead>
 					<tbody>
 						<tr>
-							<td class="name t_stats_player"></td>
-							<td>
-								<div class="score"></div>
+							<td class="name t_stats_player">
+								{{topplayerVisit[0].name}}
 							</td>
-							<td class="name t_stats_player"></td>
+							<td>
+								<div class="score">
+									<strong>{{topplayerVisit[0].value}}</strong>
+									<span>得分</span>
+									<strong>{{topplayerHome[0].value}}</strong>
+								</div>
+							</td>
+							<td class="name t_stats_player">
+								{{topplayerHome[0].name}}
+							</td>
+						</tr>
+						<tr>
+							<td class="name t_stats_player">
+								{{topplayerVisit[1].name}}
+							</td>
+							<td>
+								<div class="score">
+									<strong>{{topplayerVisit[1].value}}</strong>
+									<span>篮板</span>
+									<strong>{{topplayerHome[1].value}}</strong>
+								</div>
+							</td>
+							<td class="name t_stats_player">
+								{{topplayerHome[1].name}}
+							</td>
+						</tr>
+						<tr>
+							<td class="name t_stats_player">
+								{{topplayerVisit[2].name}}
+							</td>
+							<td>
+								<div class="score">
+									<strong>{{topplayerVisit[2].value}}</strong>
+									<span>助攻</span>
+									<strong>{{topplayerHome[2].value}}</strong>
+								</div>
+							</td>
+							<td class="name t_stats_player">
+								{{topplayerHome[2].name}}
+							</td>
+						</tr>
+						<tr>
+							<td class="name t_stats_player">
+								{{topplayerVisit[3].name}}
+							</td>
+							<td>
+								<div class="score">
+									<strong>{{topplayerVisit[3].value}}</strong>
+									<span>抢断</span>
+									<strong>{{topplayerHome[3].value}}</strong>
+								</div>
+							</td>
+							<td class="name t_stats_player">
+								{{topplayerHome[3].name}}
+							</td>
+						</tr>
+						<tr>
+							<td class="name t_stats_player">
+								{{topplayerVisit[4].name}}
+							</td>
+							<td>
+								<div class="score">
+									<strong>{{topplayerVisit[4].value}}</strong>
+									<span>盖帽</span>
+									<strong>{{topplayerHome[4].value}}</strong>
+								</div>
+							</td>
+							<td class="name t_stats_player">
+								{{topplayerHome[4].name}}
+							</td>
 						</tr>
 					</tbody>
 				</table>
@@ -306,7 +378,11 @@
 				visitplayer: [],
 				homeplayer: [],
 				videoList: [],
-				broadcast: []
+				broadcast: [],
+				sec_scores: [], //队伍比分
+				topplayerHome: [],
+				topplayerVisit: [],
+				showTopPlayer: false
 			}
 		},
 		created() {
@@ -373,6 +449,18 @@
 					this.teamStat = this.live_stat_4_nba.teamStat;
 					this.visitplayer = this.live_stat_4_nba.playStat.visit;
 					this.homeplayer = this.live_stat_4_nba.playStat.home;
+					for(var i = 0; i < 4; i++) {
+						this.sec_scores[i] = this.broadcast_info.sec_scores[i] ? this.broadcast_info.sec_scores[i] : {
+							score1: 0,
+							score2: 0
+						};
+					}
+					this.topplayerHome = this.live_stat_4_nba.topplayer.home;
+					this.topplayerVisit = this.live_stat_4_nba.topplayer.visit;
+					if(this.topplayerVisit[0] !== {} || this.topplayerVisit[0] !== {}) {
+						this.showTopPlayer = true;
+					}
+
 				})
 			}
 
@@ -954,5 +1042,77 @@
 		-webkit-border-radius: 2px;
 		-moz-border-radius: 2px;
 		border-radius: 2px;
+	}
+	
+	.lincoapp-nba-table2 .teamblue {
+		padding-left: .2rem;
+		background: url(../assets/teamblue2.png) no-repeat left top;
+		background-size: auto 100%;
+	}
+	
+	.lincoapp-nba-table2 .teamred {
+		padding-right: .2rem;
+		background: url(../assets/teamred2.png) no-repeat right top;
+		background-size: auto 100%;
+	}
+	
+	.lincoapp-nba-table2 .team-logo {
+		width: .84rem;
+		height: inherit;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: 90%;
+	}
+	
+	.lincoapp-nba-table2 thead td:last-child .team-logo {
+		float: right;
+	}
+	
+	.lincoapp-nba-table2 tbody tr td:first-child {
+		width: 34%;
+		padding: 0 .16rem;
+		color: #222;
+		font-size: .28rem;
+	}
+	
+	.lincoapp-nba-table2 tbody tr td:nth-child(2) {
+		width: 32%;
+		text-align: center;
+		color: #222;
+		font-size: .28rem;
+	}
+	
+	.lincoapp-nba-table2 tbody tr td:last-child {
+		width: 34%;
+		text-align: right;
+		color: #222;
+		font-size: .28rem;
+		padding: 0 .16rem;
+	}
+	
+	.lincoapp-nba-table2 .score {
+		display: -webkit-box;
+	}
+	
+	.lincoapp-nba-table2 .score strong,
+	.lincoapp-nba-table2 .score span {
+		display: block;
+		flex: 1;
+	}
+	
+	.lincoapp-nba-table2 .score strong:first-child {
+		text-align: left;
+	}
+	
+	.lincoapp-nba-table2 .score strong {
+		font-size: .32rem;
+	}
+	
+	.lincoapp-nba-table2 .score strong:last-child {
+		text-align: right;
+	}
+	
+	.lincoapp-nba-table1 thead {
+		border-bottom: .01rem solid #e8e8e8;
 	}
 </style>
