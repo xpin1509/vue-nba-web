@@ -18,7 +18,7 @@
 				<router-link to="/playoff">季后赛</router-link>
 			</li>
 			<li>
-				<router-link to="/video">视频</router-link>
+				<router-link to="/image">图片</router-link>
 			</li>
 			<li>
 				<router-link to="/community">圈子</router-link>

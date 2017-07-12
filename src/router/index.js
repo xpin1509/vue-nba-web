@@ -6,6 +6,7 @@ import PlayOff from '@/components/PlayOff'
 import Range from '@/components/Range'
 import Stats from '@/components/Stats'
 import Live from '@/components/Live'
+import Image from '@/components/Image'
 
 Vue.use(Router)
 
@@ -44,6 +45,11 @@ export default new Router({
 			path: '/live',
 			name: 'Live',
 			component: Live
+		},
+		{
+			path: '/image',
+			name: 'Image',
+			component: Image
 		}
 	]
 })
