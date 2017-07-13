@@ -20,7 +20,7 @@
 			<li>
 				<router-link to="/image">图片</router-link>
 			</li>
-			<li>
+			<!--<li>
 				<router-link to="/community">圈子</router-link>
 			</li>
 			<li>
@@ -33,7 +33,7 @@
 				<router-link to="/team">马刺</router-link>
 			</li>
 			<li>
-				<router-link to="/team">热火</router-link>
+				<router-link to="/team">热火</router-link>-->
 			</li>
 		</ul>
 	</div>
