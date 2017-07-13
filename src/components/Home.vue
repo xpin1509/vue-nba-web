@@ -41,40 +41,40 @@
 </template>
 
 <script>
-export default {
-	name: 'home',
-	data() {
-		return {
-			newsList: [],
-			imgList: [],
-			gameList: []
-		}
-	},
-	created() {
-		var self = this;
-		this.$http.get('https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=index_basic_new%2Cindex_live').then(function(res) {
-			//api json=>foucsImageList焦点大图,quickList快讯
-			var result = JSON.parse(res.body);
-			self.newsList = result.index_basic_new.data.quickList;
-			self.gameList = result.index_live.data.indexLiveList;
-			self.imgList = result.index_basic_new.data.foucsImageList;
-		});
-		this.$store.dispatch('showHead');
-	},
-	updated() {
-		new Slider({
-			el: 'slider-wrap'
-		});
-	},
-	methods: {
-		openUrl: function(cid, tid) {
-			location.href = 'https://quan.qq.com/post?circleid=' + cid + '&postid=' + tid;
+	export default {
+		name: 'home',
+		data() {
+			return {
+				newsList: [],
+				imgList: [],
+				gameList: []
+			}
 		},
-		liveGame: function(liveId, scheduleId, guessId) {
-			console.log(liveId + ',' + scheduleId + ',' + guessId)
+		created() {
+			var self = this;
+			this.$http.get('https://live.3g.qq.com/g/s?aid=action_api&module=nba&action=index_basic_new%2Cindex_live').then(function(res) {
+				//api json=>foucsImageList焦点大图,quickList快讯
+				var result = JSON.parse(res.body);
+				self.newsList = result.index_basic_new.data.quickList;
+				self.gameList = result.index_live.data.indexLiveList;
+				self.imgList = result.index_basic_new.data.foucsImageList;
+			});
+			this.$store.dispatch('showHead');
+		},
+		updated() {
+			new Slider({
+				el: 'slider-wrap'
+			});
+		},
+		methods: {
+			openUrl: function(cid, tid) {
+				location.href = 'https://quan.qq.com/post?circleid=' + cid + '&postid=' + tid;
+			},
+			liveGame: function(liveId, scheduleId, guessId) {
+				console.log(liveId + ',' + scheduleId + ',' + guessId)
+			}
 		}
 	}
-}
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -125,8 +125,8 @@ export default {
 	
 	.game {
 		display: -webkit-box;
-	    display: -moz-box;
-	    display: box;
+		display: -moz-box;
+		display: box;
 		margin: 0.2rem 0;
 		padding: 0.1rem;
 		-webkit-overflow-scrolling: touch;
@@ -181,7 +181,8 @@ export default {
 		display: flex;
 		display: -webkit-flex;
 		padding: 0.1rem 0.25rem;
-		height: 2rem;
+		height: 1.5rem;
+		padding: .24rem 0;
 		border-bottom: 1px solid #f2f7fc;
 	}
 	

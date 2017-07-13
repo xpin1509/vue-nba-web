@@ -253,7 +253,7 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="lincoapp-nba-table3">
+				<div class="lincoapp-nba-table3" v-if="visitplayer.length">
 					<div class="title">球员数据</div>
 					<div class="stats">
 						<div class="player">
@@ -386,14 +386,13 @@
 			}
 		},
 		created() {
-			var self = this;
 			this.liveId = this.$route.query.liveId;
 			this.scheduleId = this.$route.query.scheduleId;
 			var scoreApi = 'https://nb.3g.qq.com/nba/api/live@getInfo?';
 			this.$http.get(scoreApi + 'i_schid=' + this.scheduleId + '&i_liveid=' + this.liveId).then(function(res) {
 				var str = JSON.stringify(res.body).replace(/@/g, '');
 				var res = JSON.parse(str);
-				self.result = res.livegetInfo.data;
+				this.result = res.livegetInfo.data;
 			})
 			this.$store.dispatch('hideHead');
 		},
@@ -455,12 +454,13 @@
 							score2: 0
 						};
 					}
-					this.topplayerHome = this.live_stat_4_nba.topplayer.home;
-					this.topplayerVisit = this.live_stat_4_nba.topplayer.visit;
-					if(this.topplayerVisit[0] !== {} || this.topplayerVisit[0] !== {}) {
-						this.showTopPlayer = true;
+					if(this.live_stat_4_nba.code === 0){
+						this.topplayerHome = this.live_stat_4_nba.topplayer.home;
+						this.topplayerVisit = this.live_stat_4_nba.topplayer.visit;
+						if(this.topplayerVisit[0].value || this.topplayerVisit[0].value){
+							this.showTopPlayer = true;
+						}
 					}
-
 				})
 			}
 
