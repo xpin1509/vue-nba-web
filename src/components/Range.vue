@@ -144,7 +144,8 @@
 		vertical-align: middle;
 		margin-right: 0.1rem;
 	}
-	.first .golden{
+	
+	.first .golden {
 		background: #F3BF2E;
 	}
 </style>

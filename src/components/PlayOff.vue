@@ -231,13 +231,15 @@
 		width: 2.8rem;
 		float: right;
 	}
-	.team_playoff_team{
+	
+	.team_playoff_team {
 		margin-bottom: 0.2rem;
 	}
-	.team_playoff_team_each{
+	
+	.team_playoff_team_each {
 		display: flex;
-		
 	}
+	
 	.teamlogo {
 		width: 0.6rem;
 		height: 0.6rem;

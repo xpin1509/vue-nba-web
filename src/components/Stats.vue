@@ -177,15 +177,15 @@
 		background-repeat: no-repeat;
 	}
 	
-	.stats .firsts{
+	.stats .firsts {
 		background: #ED1439 !important;
 	}
 	
-	.stats .second  {
+	.stats .second {
 		background: #FA9729;
 	}
 	
-	.stats .third  {
+	.stats .third {
 		background: #F3BF2E;
 	}
 </style>

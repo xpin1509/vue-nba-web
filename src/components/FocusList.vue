@@ -11,7 +11,7 @@
 			<div class="page" id="page"><i></i></div>
 		</div>
 		<div class="game">
-			<div class="game-list" v-for="gameItem in gameList" @click="liveGame(gameItem.liveId,gameItem.scheduleId,gameItem.guessId)">
+			<div class="game-list" v-for="gameItem in gameList">
 				<router-link :to="{path:'live',query: {liveId:gameItem.liveId,scheduleId:gameItem.scheduleId,guessId:gameItem.guessId}}">
 					<div class="vist-team" :style="{backgroundImage: 'url(' + gameItem.visitTeamLogo + ')'}"></div>
 					<div class="game-info">

@@ -54,7 +54,6 @@
 	li .u-img img {
 		width: 100%;
 		display: block;
-		
 	}
 	
 	li .u-info {
